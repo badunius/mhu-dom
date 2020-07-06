@@ -18,11 +18,15 @@ export const build = (comp, parent) => {
 }
 
 const EL = Symbol('EL')
+const ON = Symbol('ON')
+const SKIP = Symbol('SKIP')
 
 export class mNode {
 	constructor(host) {
 		this.$host = host
 		this[EL] = null
+		this[ON] = new Map()
+		this[SKIP] = new Set()
 		this.$ch = new Set()
 	}
 
@@ -51,9 +55,18 @@ export class mNode {
 		if (!!res) {
 			this.$ch.add(res)
 			res.create(props)
+			res.$emit = (event, payload) => {
+				this.$$call(event, payload)
+			}
 			return res
 		}
 		return null
+	}
+
+	clear() {
+		this.$el.clear()
+		this.$ch.clear()
+		return this.$el
 	}
 
 	/**
@@ -62,4 +75,29 @@ export class mNode {
 	get $el() {
 		return new Synth(this[EL])
 	}
+
+	$on(event, handler) {
+		this[ON].set(event, handler)
+	}
+
+	$skip(event) {
+		this[SKIP].add(event)
+	}
+
+	/***
+	 * Incoming events
+	 */
+	$$call(event, payload) {
+		if (this[SKIP].has(event)) {
+			this.$emit(event, payload)
+		}
+
+		if (this[ON].has(event)) {
+			this[ON].get(event)(payload)
+		} else {
+			this.$emit(event, payload)
+		}
+	}
+
+	$emit(event, payload) {}
 }

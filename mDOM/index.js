@@ -26,7 +26,7 @@ class mhuVM extends mNode {
 		}
 
 		if (!root) {
-			console.error()
+			console.error('Root node not found')
 			return
 		}
 

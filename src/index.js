@@ -7,5 +7,3 @@ const inst = Mhu.create(
 	App,
 	'body'
 )
-
-console.log(inst.$el)
