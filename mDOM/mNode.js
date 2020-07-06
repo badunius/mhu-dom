@@ -42,6 +42,8 @@ export class mNode {
 		} else {
 			console.error('failed to create an element "%s"', tag)
 		}
+
+		return this.$el
 	}
 
 	child(comp = 'div', props = {}) {

@@ -1,10 +1,17 @@
 import { mNode } from 'DOM'
 
+import { Container } from './Container.js'
+
 class App extends mNode {
 	create() {
-		this.$is('h3')
-		this.$el.text('App')
-		this.child('button').$el.text('button')
+		this
+			.$is('div')
+		const cont = this
+			.child(Container)
+
+		cont
+			.child('button')
+			
 	}
 }
 

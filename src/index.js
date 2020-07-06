@@ -1,4 +1,5 @@
 import { Mhu } from 'DOM'
+import './style/index.scss'
 
 import App from './App'
 
