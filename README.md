@@ -45,30 +45,30 @@ const inst = Mhu.create(
 ### new Synth(node: HTMLElement): Synth
 Создаёт обёртку вокруг указанного узла
 
-### new Synth.on(event: string, handler: function): Synth
+### Synth.on(event: string, handler: function): Synth
 Вешает на узел обработчик через `addEventListener`
 
-### new Synth.cn(list: string[], clean: boolean = false): Synth
+### Synth.cn(list: string[], clean: boolean = false): Synth
 Навешивает на узел классы из списка `list`, предварительно отфильтровывая falsy элементы. То есть, да, можно делать `.cn([this.visible && 'visible'])`. Если флаг `clean` установлен в `true`, предварительно очистит все классы, которые уже навешаны.
 
-### new Synth.attr(list: {[attr: string]: value}): Synth
+### Synth.attr(list: {[attr: string]: value}): Synth
 Навешивает на узел аттрибуты.
 
-### new Synth.add(tag: string, NS: string): Synth
+### Synth.add(tag: string, NS: string): Synth
 Создаёт дочерний узел по указанному тэгу. Если указана ещё и NS, то создаст узел через `document.createElementNS(NS, tag)` (для всяких там SVG).
 
 Если удалось создать узел, добавит его потомком к текущему и вернёт `Synth`-обёртку для созданного узла. Единственное исключение.
 
-### new Synth.id(id: string): Synth
+### Synth.id(id: string): Synth
 Устанавливает `id` узла.
 
-### new Synth.text(content: string): Synth
+### Synth.text(content: string): Synth
 Устанавливает `textContent` узла.
 
-### new Synth.clear(): Synth
+### Synth.clear(): Synth
 Сносит `innerHTML` узла.
 
-### new Synth.node: HTMLElement
+### Synth.node: HTMLElement
 Геттер. Возвращает HTMLElement, вокруг которого обёрнут `Synth` (если уж совсем неймётся).
 
 ## mNode
